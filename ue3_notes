@@ -1,0 +1,46 @@
+mit dem inhalt dieser übung wären wir soweit, das treiber automatisch geladen werden.
+allerdings isst bei uns das udev falsch konfiguriert, daher funktioniert das derzeit nicht
+
+mit den entsprechenden zeilen in den folien
+- korrekter ablagepfad
+- depmod -a zum hinzufügen in devicetree? (schaun ob in modules.alias der treiber drinsteht, dann sollte passen)
+- dann mit modprobe starten
+	->am board: in /sys/firmware/devicetree/base/soc/ unser treiber liegt hier mit allen leds?
+
+diese übung gewährleistet das wir den treiber mehrmals laden können.
+
+da wir jetzt platform-device haben, können wir nun dev_info, dev_warn, usw. verwenden, anstatt printk, usw...
+somit auch keine checkpatch warnings mehr.
+
+am board wenn device tree rüber kopiert:
+
+mkdir mountpoint
+mount /dev/mmcblk0p1 mountpoint/
+cd mountpoint/
+ls -> da müsst jeetzt unter anderem ein devicetree liegen
+cp socfgpa.....dtb socfpga....bak  -> backup des alten devicetree anlegen
+cp devicetree da drüber kopieren
+reboot	-> nur beim booten wird devicetree geladen
+
+
+für die übung:
+devicetree entsprechend der unterlagen ändern damit die leds enthalten sind (10 einträge)
+unter /soc/
+
+compatible braucht nur 1 string
+reg: achtung wortbreite 32bit, bei länge beachten
+
+bezüglich position im devicetree:
+ganz unten nochmal root knoten öffnen, darin soc knoten öffnen, darin enträge
+
+/ {
+	soc {
+		eintrag blablub
+	};
+};
+
+treiber in /lib/module kopieren
+
+modprobe einmal ausführen -> erzeugt dann entsprechend devicetree 10 instanzen
+
+

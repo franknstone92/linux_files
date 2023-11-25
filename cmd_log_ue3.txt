@@ -1,0 +1,74 @@
+    1  rm .bash_history 
+    2  ssh root@10.24.99.2
+    3  cd linux
+    4  git checkout v5.4.69
+    5  git checkout -b cdev-demo
+    6  git clean -xdf
+    7  touch .scmversion
+    8  
+    9  export CRSS_COMPILE=-arm-linux-gnueabihf-
+   10  vim drivers/linux/demo.c
+   11  cd linux
+   12  git status
+   13  vi drivers/misc/demo.c
+   14  cd linux
+   15  vi drivers/linux/demo.c
+   16  cd drivers/linux/
+   17  cd drivers/misc/
+   18  ll
+   19  cd linux
+   20  ll
+   21  git checkout v5.4.69
+   22  git checkout -b "ue3_lv"
+   23  git code . 
+   24  code . &
+   25  git reset --hard v5.4.69
+   26  git clean -xdf
+   27  touch .scmversion
+   28  git checkout ue3_lv
+   29  git status
+   30  cp ~/Downloads/socfpga_cyclone5_de1soc.dts arch/arm/boot/dts/
+   31  cd arch/arm
+   32  ll
+   33  cd boot/dts
+   34  ll
+   35  cd .. .. ..
+   36  cd ..
+   37  export CROSS_COMPILE=-arm-linux-gnueabihf-
+   38  export ARCH=arm
+   39  make socfpga_defconfig
+   40  export ARCH=arm
+   41  export CROSS_COMPILE=-arm-linux-gnueabihf-
+   42  make socfpga_defconfig
+   43  export CROSS_COMPILE=arm-linux-gnueabihf-
+   44  make socfpga_defconfig
+   45  make socfpga_cyclone5_de1soc.dtb
+   46  file arch/arm/boot/dts/socfpga_cyclone5_de1soc.dtb
+   47  scp arch/arm/boot/dts/socfpga_cyclone5_de1soc.dtb root@10.24.xy.bla:/...
+   48  git status
+   49  git add .
+   50  git commit -m "test commit zum zeigen des patchen - devicetree geadded"
+   51  git status
+   52  git log --oneline
+   53  git format-patch -n1
+   54  vim 0001-test-commit-zum-zeigen-des-patchen-devicetree-geadde.patch
+   55  checkpatch 0001-test-commit-zum-zeigen-des-patchen-devicetree-geadde.patch
+   56  git show v5.4.69
+   57  ./scripts/checkpatch.pl 0001-test-commit-zum-zeigen-des-patchen-devicetree-geadde.patch
+   58  touch test
+   59  git status
+   60  git add .
+   61  git status
+   62  git commit --amend
+   63  git log --oneline
+   64  git status
+   65  git touch filetest
+   66  touch asdf
+   67  git add .
+   68  git commit -m "hallo"
+   69  git log --oneline
+   70  git rebase -i v5.4.69
+   71  git log
+   72  git log --oneline
+   73  git log
+   74  history > /home/ldd/Desktop/cmd_log_ue3.txt
